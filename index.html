@@ -5,8 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
+    <link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Report</h1>
+    </header>
+    <section>
+        <section>
+            <h3>Enter City</h3>
+        </section>
+        <section>
+            <input id="city-name" type="text">
+        </section>
+        <section>
+            <button id=""reset">Reset</button>
+        </section>
+    </section> 
+    <section>
+        <section>
+            <h2>Temperature</h2>
+        </section>
+        <section>
+            <i id="up-arrow"></i>
+            <i id="down-arrow"></i>
+        </section>
+    </section> 
+    <section>
+        <section>
+            <button id ="real-time">Get Real Time Temperature</button>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Sky</h2>
+        </section>
+        <section>
+            <select name="sky" id="sky">
+                <option id="sunny">Sunny</option>
+                <option id="cloudy">Cloudy</option>
+                <option id="rainy">Rainy</option>
+                <option id="snowy">Snowy</option>
+            </select>  
+        </section>
+    </section> 
+
+    <script src = '/src/index.js'></script>
 </body>
 </html>
