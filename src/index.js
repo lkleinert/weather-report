@@ -4,7 +4,8 @@ const state = {
   temp: 75,
   tempColor: 'warm',
   landscape: 'body_warm',
-  currentCity: 'Phoenix',
+  City: 'Phoenix',
+  sky: 'sunny',
 };
 
 const tempColor = () => {
@@ -53,13 +54,34 @@ const decreaseTemp = () => {
 };
 
 const changeCity = () => {
-  console.log(state.currentCity);
-  const newCityName = document.getElementById('enter-city-name');
-  console.log(newCityName.value);
-  state.currentCity = newCityName.value;
-  console.log(state.currentCity);
-  const defaultCity = document.getElementById('default-city');
-  defaultCity.textContent = state.currentCity;
+  const cityName = document.getElementById('enter-city-name');
+  const displayedCity = document.getElementById('default-city');
+  state.City = cityName.value;
+  displayedCity.textContent = state.City;
+};
+
+const resetCity = () => {
+  const cityName = document.getElementById('enter-city-name');
+  state.City = 'Phoenix';
+  cityName.value = 'Phoenix';
+  changeCity();
+};
+
+const changeSky = () => {
+  // console.log(state.currentSky);
+  const newSky = document.getElementById('sky-options');
+  // console.log(sky.value);
+  state.sky = newSky.value;
+  const skyImage = document.getElementById('sky-image-container');
+  if (state.sky === 'sunny') {
+    skyImage.className = 'sunny';
+  } else if (state.sky === 'cloudy') {
+    skyImage.className = 'cloudy';
+  } else if (state.sky === 'rainy') {
+    skyImage.className = 'rainy';
+  } else if (state.sky === 'snowy') {
+    skyImage.className = 'snowy';
+  }
 };
 
 // const updateDogContainer = () => {
@@ -75,8 +97,14 @@ const registerEventHandlers = (event) => {
   const downArrow = document.getElementById('down-arrow');
   downArrow.addEventListener('click', decreaseTemp);
 
-  const newCityName = document.getElementById('enter-city-name');
-  newCityName.addEventListener('input', changeCity);
+  const CityName = document.getElementById('enter-city-name');
+  CityName.addEventListener('input', changeCity);
+
+  const resetButton = document.getElementById('reset-city');
+  resetButton.addEventListener('click', resetCity);
+
+  const newSky = document.getElementById('sky-options');
+  newSky.addEventListener('change', changeSky);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);

@@ -172,3 +172,15 @@ h3 {
 .cold {
     color: teal;
 }
+
+.sunny { background-image: url('/photos/sunny_sky.jpeg');
+}
+
+.cloudy { background-image: url('/photos/cloudy_light.jpeg');
+}
+
+.rainy {  background-image: url('/photos/rainy.png');
+}
+
+.snowy { background-image: url('/photos/snowy.png');
+}

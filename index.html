@@ -17,8 +17,8 @@
             <h3>Enter City</h3>
         </section>
         <section>
-            <label for="city-name">City Name</label>
-            <input id="enter-city-name" name ="city-name" type="text">
+            <label for="city">City</label>
+            <input id="enter-city-name" name ="city" value ="Phoenix" type="text">
         </section>
         <section>
             <button id="reset-city">Reset City</button>
@@ -45,18 +45,18 @@
     </section>
     <section id="sky-box">
         <section>
-            <h3>Sky</h3>
+            <h3>Select Sky</h3>
         </section>
-        <section id ="sky-options-container">
-            <select id="sky-options">
-                <option id="sunny">Sunny</option>
-                <option id="cloudy">Cloudy</option>
-                <option id="rainy">Rainy</option>
-                <option id="snowy">Snowy</option>
+        <section id ="sky-options-container">            
+            <label for="sky-options">Sky</label>
+            <select name= sky-options" id="sky-options">
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+                <option value="snowy">Snowy</option>
             </select>
         </section>
-        <section id = "sky-image-container">
-            <img id = "sky-image" src ='photos/snowy.png'/>
+        <section id = "sky-image-container" class ="sunny">
         </section>
     </section>
     </main> 
