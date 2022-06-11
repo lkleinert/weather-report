@@ -1,40 +1,24 @@
 body{
+    height: 100vh;
+    width: 100vw;
     margin: 0;
     font-family: helvetica;
     color: #2F2F2D;
     font-weight: 300;
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr; */
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    grid-template-columns: 1fr 3fr 1fr; 
     background-image: url('/photos/spring.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    ba
-    /* padding-right: 30px; */
 } 
 
-/* main { */
-    /* grid-row: 1;
-    grid-column: 1; */
-    /* display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    grid-template-columns: 1fr 3fr 1fr; */
-    /* background-image: url('/photos/colorado-snow.jpeg');
-    background-size: cover; */
-    /* background-repeat: no-repeat;
-    background-position: center; 
-}
-
-/* main img {
-    width: 100%;
+main {
     height: 100%;
-    grid-row: 1/4;
-    grid-column: 1/4;
-} */
+    width: 100%;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+}
 
 header {
     grid-column: 2/3;
@@ -109,8 +93,7 @@ h3 {
     padding: 5px;
     /* margin: 1em; */
     font-size: 4em;
-    color: black;
-    background-color: lightgray
+    background-color: lightgray;
     border-radius: 10px;
 }
 
@@ -148,4 +131,44 @@ h3 {
     width: 100%;
     border: #2F2F2D 2px solid;
 }
-    
+
+.body_hot {
+    background-image: url('/photos/best_desert.jpeg');
+}
+
+.body_warm {
+    background-image: url('/photos/spring.jpeg');
+}
+
+.body_cool {
+    background-image: url('/photos/fall_4.jpeg');
+}
+
+.body_chilly {
+    background-image: url('/photos/fall_3.jpeg');
+}
+
+.body_cold {
+    background-image: url('/photos/colorado-snow.jpeg');
+}
+
+.hot {
+    color: red;
+}
+
+.warm{
+    color: orange;
+}
+
+.cool { 
+    color: yellow;
+
+}
+
+.chilly{ 
+    color: green;
+}
+
+.cold {
+    color: teal;
+}

@@ -7,9 +7,8 @@
     <title>Weather Report</title>
     <link rel="stylesheet" href="/styles/index.css">
 </head>
-<body id ="body">
-    <!-- <main>
-    <img src="/photos/colorado-snow.jpeg"/> -->
+<body id = "body" class ="body_warm">
+    <main>
     <header>
         <h1>Weather Report</h1>
     </header>
@@ -18,7 +17,8 @@
             <h3>Enter City</h3>
         </section>
         <section>
-            <input id="enter-city-name" type="text">
+            <label for="city-name">City Name</label>
+            <input id="enter-city-name" name ="city-name" type="text">
         </section>
         <section>
             <button id="reset-city">Reset City</button>
@@ -32,7 +32,7 @@
             <button id="up-arrow">▲</button>
         </section>
         <section id= "num">
-            <h2 id="temp-value">75</h1>
+            <h2 id="temp-value" class="warm" >75</h1>
         </section>
         <section id="sect-arrow-down">
             <button id="down-arrow">▼</button>
@@ -59,7 +59,7 @@
             <img id = "sky-image" src ='photos/snowy.png'/>
         </section>
     </section>
-    <!-- </main>  -->
+    </main> 
     <script src = '/src/index.js'></script>
 </body>
 </html>
