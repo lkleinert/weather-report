@@ -1,15 +1,13 @@
 'use strict';
 
-// const axios = 'axios';
-
 const state = {
   temp: 75,
   tempColor: 'warm',
   landscape: 'body_warm',
-  City: 'Phoenix',
+  City: 'Lexington',
   sky: 'sunny',
-  lat: 33.4484367,
-  lon: -112.0741417,
+  lat: 38.0464066,
+  lon: -84.4970393,
 };
 
 const getWeather = () => {
@@ -18,10 +16,8 @@ const getWeather = () => {
       params: { lat: state.lat, lon: state.lon },
     })
     .then((response) => {
-      const data = console.log(response.data.current);
       const temp_k = response.data.current.temp;
-      const temp_f = Math.round(((temp_k - 273.15) * 9) / 5 + 32);
-      state.temp = temp_f;
+      state.temp = Math.round(((temp_k - 273.15) * 9) / 5 + 32);
       const tempValue = document.getElementById('temp-value');
       tempValue.textContent = state.temp;
       tempColorLandscape();
@@ -35,12 +31,8 @@ const getLatLon = () => {
   axios
     .get('http://127.0.0.1:5000/location', { params: { q: state.City } })
     .then((response) => {
-      console.log(state.lat);
       state.lat = response.data[0].lat;
-      console.log(state.lat);
-      console.log(state.lon);
       state.lon = response.data[0].lon;
-      console.log(state.lon);
       getWeather();
     })
     .catch((error) => {
@@ -48,50 +40,31 @@ const getLatLon = () => {
     });
 };
 
-//ROSALIND
-// function get(url) {
-//   const promise = new Promise();
-//   XMLHttpRequest({
-//     url,
-//     onFinish: (result) => {
-//       promise.resolve(result);
-//     },
-//     onError: (error) => {
-//       promise.error(error);
-//     },
-//   });
-//   return promise;
-// }
-
 const tempColorLandscape = () => {
-  const tempValue = document.getElementById('temp-value');
-  const body = document.getElementById('body');
+  let color;
+  let landscape;
   if (state.temp >= 80) {
-    state.tempColor = 'hot';
-    tempValue.className = state.tempColor;
-    state.landscape = 'body_hot';
-    body.className = state.landscape;
+    color = 'hot';
+    landscape = 'body_hot';
   } else if (state.temp >= 70 && state.temp <= 79) {
-    state.tempColor = 'warm';
-    tempValue.className = state.tempColor;
-    state.landscape = 'body_warm';
-    body.className = state.landscape;
+    color = 'warm';
+    landscape = 'body_warm';
   } else if (state.temp >= 60 && state.temp <= 69) {
-    state.tempColor = 'cool';
-    tempValue.className = state.tempColor;
-    state.landscape = 'body_cool';
-    body.className = state.landscape;
+    color = 'cool';
+    landscape = 'body_cool';
   } else if (state.temp >= 50 && state.temp <= 59) {
-    state.tempColor = 'chilly';
-    tempValue.className = state.tempColor;
-    state.landscape = 'body_chilly';
-    body.className = state.landscape;
+    color = 'chilly';
+    landscape = 'body_chilly';
   } else if (state.temp <= 49) {
-    state.tempColor = 'cold';
-    tempValue.className = state.tempColor;
-    state.landscape = 'body_cold';
-    body.className = state.landscape;
+    color = 'cold';
+    landscape = 'body_cold';
   }
+  state.tempColor = color;
+  state.landscape = landscape;
+  const tempValue = document.getElementById('temp-value');
+  tempValue.className = state.tempColor;
+  const landscapeBody = document.getElementById('body');
+  landscapeBody.className = state.landscape;
 };
 
 const increaseTemp = () => {
@@ -110,21 +83,20 @@ const decreaseTemp = () => {
 
 const changeCity = () => {
   const cityName = document.getElementById('enter-city-name');
-  const displayedCity = document.getElementById('default-city');
   state.City = cityName.value;
+  const displayedCity = document.getElementById('default-city');
   displayedCity.textContent = state.City;
 };
 
 const resetCity = () => {
-  const cityName = document.getElementById('enter-city-name');
-  state.City = 'Phoenix';
-  cityName.value = 'Phoenix';
+  state.City = 'Lexington, KY';
+  const defaultCity = document.getElementById('enter-city-name');
+  defaultCity.value = state.City;
   changeCity();
 };
 
 const changeSky = () => {
-  const newSky = document.getElementById('sky-options');
-  state.sky = newSky.value;
+  state.sky = document.getElementById('sky-options').value;
   const skyImage = document.getElementById('sky-image-container');
   if (state.sky === 'sunny') {
     skyImage.className = 'sunny';
