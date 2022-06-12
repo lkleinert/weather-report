@@ -1,14 +1,69 @@
 'use strict';
 
+// const axios = 'axios';
+
 const state = {
   temp: 75,
   tempColor: 'warm',
   landscape: 'body_warm',
   City: 'Phoenix',
   sky: 'sunny',
+  lat: 33.4484367,
+  lon: -112.0741417,
 };
 
-const tempColor = () => {
+const getWeather = () => {
+  axios
+    .get('http://127.0.0.1:5000/weather', {
+      params: { lat: state.lat, lon: state.lon },
+    })
+    .then((response) => {
+      const data = console.log(response.data.current);
+      const temp_k = response.data.current.temp;
+      const temp_f = Math.round(((temp_k - 273.15) * 9) / 5 + 32);
+      state.temp = temp_f;
+      const tempValue = document.getElementById('temp-value');
+      tempValue.textContent = state.temp;
+      tempColorLandscape();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const getLatLon = () => {
+  axios
+    .get('http://127.0.0.1:5000/location', { params: { q: state.City } })
+    .then((response) => {
+      console.log(state.lat);
+      state.lat = response.data[0].lat;
+      console.log(state.lat);
+      console.log(state.lon);
+      state.lon = response.data[0].lon;
+      console.log(state.lon);
+      getWeather();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+//ROSALIND
+// function get(url) {
+//   const promise = new Promise();
+//   XMLHttpRequest({
+//     url,
+//     onFinish: (result) => {
+//       promise.resolve(result);
+//     },
+//     onError: (error) => {
+//       promise.error(error);
+//     },
+//   });
+//   return promise;
+// }
+
+const tempColorLandscape = () => {
   const tempValue = document.getElementById('temp-value');
   const body = document.getElementById('body');
   if (state.temp >= 80) {
@@ -42,15 +97,15 @@ const tempColor = () => {
 const increaseTemp = () => {
   state.temp += 1;
   const tempValue = document.getElementById('temp-value');
-  tempValue.textContent = `${state.temp}`;
-  tempColor();
+  tempValue.textContent = state.temp;
+  tempColorLandscape();
 };
 
 const decreaseTemp = () => {
   state.temp -= 1;
   const tempValue = document.getElementById('temp-value');
-  tempValue.textContent = `${state.temp}`;
-  tempColor();
+  tempValue.textContent = state.temp;
+  tempColorLandscape();
 };
 
 const changeCity = () => {
@@ -68,9 +123,7 @@ const resetCity = () => {
 };
 
 const changeSky = () => {
-  // console.log(state.currentSky);
   const newSky = document.getElementById('sky-options');
-  // console.log(sky.value);
   state.sky = newSky.value;
   const skyImage = document.getElementById('sky-image-container');
   if (state.sky === 'sunny') {
@@ -83,12 +136,6 @@ const changeSky = () => {
     skyImage.className = 'snowy';
   }
 };
-
-// const updateDogContainer = () => {
-//   state.dogCount += 1;
-//   addDogImg();
-//   updateDogCountLabel();
-// }
 
 const registerEventHandlers = (event) => {
   const upArrow = document.getElementById('up-arrow');
@@ -105,6 +152,9 @@ const registerEventHandlers = (event) => {
 
   const newSky = document.getElementById('sky-options');
   newSky.addEventListener('change', changeSky);
+
+  const realTimeButton = document.getElementById('real-time-button');
+  realTimeButton.addEventListener('click', getLatLon);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
