@@ -1,4 +1,4 @@
-'use strict';
+('use strict');
 
 const state = {
   temp: 75,
@@ -12,8 +12,8 @@ const state = {
 
 const getWeather = () => {
   axios
-    .get('http://127.0.0.1:5000/weather', {
-      params: { lat: state.lat, lon: state.lon },
+    .get('https://pacific-dawn-14219.herokuapp.com/weather', {
+      params: { lat: lat, lon: lon },
     })
     .then((response) => {
       const temp_k = response.data.current.temp;
@@ -29,11 +29,19 @@ const getWeather = () => {
 
 const getLatLon = () => {
   axios
-    .get('http://127.0.0.1:5000/location', { params: { q: state.City } })
+    .get('https://pacific-dawn-14219.herokuapp.com/location', {
+      params: { q: state.City },
+    })
     .then((response) => {
-      state.lat = response.data[0].lat;
-      state.lon = response.data[0].lon;
-      getWeather();
+      lat = response.data[0].lat;
+      lon = response.data[0].lon;
+      {
+        lat, lon;
+      }
+    })
+    .then((response) => {
+      console.log(response); //will show undefined
+      getWeather(lat, lon);
     })
     .catch((error) => {
       console.log(error);
